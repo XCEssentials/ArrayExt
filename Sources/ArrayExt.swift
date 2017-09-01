@@ -24,6 +24,8 @@
  
  */
 
+// MARK: - Custom prefix
+
 public
 extension Array
 {
@@ -35,13 +37,14 @@ extension Array
     
     //===
     
+    public
     var xce: XCEArrayProxy<Element>
     {
         return XCEArrayProxy(array: self)
     }
 }
 
-//===
+// MARK: - Error declarations
 
 public
 extension Array.XCEArrayProxy
@@ -55,9 +58,13 @@ extension Array.XCEArrayProxy
         public
         struct InvalidElement: Error { }
     }
-    
-    //===
-    
+}
+
+// MARK: - Index validation
+
+public
+extension Array.XCEArrayProxy
+{
     func isValidIndex(_ index: Int) -> Bool
     {
         return array.startIndex...array.endIndex ~= index
@@ -69,9 +76,13 @@ extension Array.XCEArrayProxy
     {
         return array.startIndex...(array.endIndex+1) ~= index
     }
-    
-    //===
-    
+}
+
+// MARK: - Element accessors
+
+public
+extension Array.XCEArrayProxy
+{
     func element(at index: Int) throws -> Element
     {
         guard
@@ -99,9 +110,13 @@ extension Array.XCEArrayProxy
         
         return array[index]
     }
-    
-    //===
-    
+}
+
+// MARK: - Element insertation
+
+public
+extension Array.XCEArrayProxy
+{
     func insert(_ element: Element, at index: Int) throws -> [Element]
     {
         guard
@@ -147,9 +162,13 @@ extension Array.XCEArrayProxy
         
         return result
     }
-    
-    //===
-    
+}
+
+// MARK: - Element removal
+
+public
+extension Array.XCEArrayProxy
+{
     func remove(elementAt index: Int) throws -> [Element]
     {
         guard
@@ -173,7 +192,7 @@ extension Array.XCEArrayProxy
     }
 }
 
-//===
+// MARK: - Element removal with Equatable elements
 
 public
 extension Array.XCEArrayProxy where Element: Equatable
