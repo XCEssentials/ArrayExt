@@ -216,14 +216,14 @@ extension XCEArrayProxy where Element: Equatable
 // MARK: - Little logical helpers to simplify filtering
 
 public
-extension Array
+extension XCEArrayProxy
 {
     /**
      Means "Drop everything BUT those for which the closure returns TRUE".
      */
     func includeIf(_ isIncluded: (Element) throws -> Bool) rethrows -> [Element]
     {
-        return try filter(isIncluded)
+        return try array.filter(isIncluded)
     }
 
     /**
@@ -231,6 +231,6 @@ extension Array
      */
     func excludeIf(_ isExcluded: (Element) throws -> Bool) rethrows -> [Element]
     {
-        return try filter{ try !isExcluded($0) }
+        return try array.filter{ try !isExcluded($0) }
     }
 }
