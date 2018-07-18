@@ -24,8 +24,6 @@
  
  */
 
-//===
-
 public
 struct XCEArrayProxy<Element>
 {
@@ -60,14 +58,14 @@ extension XCEArrayProxy
 {
     func isValidIndex(_ index: Int) -> Bool
     {
-        return array.startIndex...array.endIndex ~= index
+        return array.startIndex..<array.endIndex ~= index
     }
     
-    //===
+    //---
     
     func isValidForInsertIndex(_ index: Int) -> Bool
     {
-        return array.startIndex...(array.endIndex+1) ~= index
+        return array.startIndex...array.endIndex ~= index
     }
 }
 
@@ -132,7 +130,7 @@ extension XCEArrayProxy
         return result
     }
     
-    //===
+    //---
     
     func insert(_ elements: [Element], at index: Int) throws -> [Element]
     {
