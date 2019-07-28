@@ -35,7 +35,6 @@ struct XCEArrayProxy<Element>
 public
 extension Array
 {
-    public
     var xce: XCEArrayProxy<Element>
     {
         return XCEArrayProxy(array: self)
@@ -191,7 +190,7 @@ extension XCEArrayProxy where Element: Equatable
     func remove(_ element: Element) throws -> [Element]
     {
         guard
-            let index = array.index(of: element)
+            let index = array.firstIndex(of: element)
         else
         {
             throw Errors.invalidElement
